@@ -33,8 +33,8 @@ namespace ProjectFinal___MVC.Controllers
                 suggestion.agentName = mission.Agent.nickname;
                 suggestion.agentLocation = $"({mission.Agent.x}, {mission.Agent.y})";
                 
-                suggestion.agentName = mission.Target.name;
-                suggestion.agentLocation = $"({mission.Target.x}, {mission.Target.y})";
+                suggestion.targetName = mission.Target.name;
+                suggestion.targetLocation = $"({mission.Target.x}, {mission.Target.y})";
 
                 suggestion.timeLeft = mission.TimLeft.ToString();
 
