@@ -1,0 +1,46 @@
+﻿@model ProjectFinal___MVC.Service.AgentWithMission
+
+@{
+    ViewData["Title"] = "GetAgents";
+}
+
+<h1>Get Agents list</h1>
+
+<table class="table">
+    <h2>Agents and their Missions</h2>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Agent Name</th>
+            <th>Photo URL</th>
+            <th>Agent Status</th>
+            <th>Location</th>
+            <th>Mission Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var agent in Model.agentWithMissions.Keys)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(_ => agent.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(_ => agent.nickname)
+                </td>
+                <td>
+                    @Html.DisplayFor(_ => agent.photoUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(_ => agent.Status)
+                </td>
+                <td>
+                    (@Html.DisplayFor(_ => agent.x), @Html.DisplayFor(_ => agent.y))
+                </td>
+                <td>
+                    @Html.ActionLink("Get mission", "getMission", "Mission", new { Mission = Model.agentWithMissions[agent] }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
