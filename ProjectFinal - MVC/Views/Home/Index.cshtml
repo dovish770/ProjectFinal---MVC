@@ -14,19 +14,22 @@
             @Html.DisplayNameFor(model => model.agents)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.agents)
+            @Html.DisplayFor(model => model.agents) |
+            on a mission: @Html.DisplayFor(model => model.ActiveAgents)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.targets)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.targets)
+            @Html.DisplayFor(model => model.targets) |
+            eliminated: @Html.DisplayFor(model => model.ActiveTargets)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.missions)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.missions)
+            @Html.DisplayFor(model => model.missions) |
+            active: @Html.DisplayFor(model => model.ActiveMissions)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.GanaralRatio)

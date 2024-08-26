@@ -4,11 +4,11 @@ namespace ProjectFinal___MVC.Service
 {
     public class AgentWithMission
     {
-        public Dictionary<Agent, string> agentWithMissions {  get; set; }
+        public Dictionary<Agent, MissionSumKills> agentWithMissions {  get; set; }
 
         public AgentWithMission()
         {
-            agentWithMissions = new Dictionary<Agent, string>();
+            agentWithMissions = new Dictionary<Agent, MissionSumKills>();
         }
     }
 }

@@ -16,11 +16,15 @@
             <th>Agent Status</th>
             <th>Location</th>
             <th>Mission Link</th>
+            <th>Time left to mission</th>
+            <th>Sum of Kills</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var agent in Model.agentWithMissions.Keys)
         {
+            var missionInfo = Model.agentWithMissions[agent];
             <tr>
                 <td>
                     @Html.DisplayFor(_ => agent.Id)
@@ -36,9 +40,33 @@
                 </td>
                 <td>
                     (@Html.DisplayFor(_ => agent.x), @Html.DisplayFor(_ => agent.y))
-                </td>
+                </td>                
+                @if (Model.agentWithMissions[agent] != null)
+                {
+                    <td>
+                        @Html.ActionLink("Get mission", "getMission", "Mission", missionInfo.mission, null)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        No active mission
+                    </td>
+                }
+                @if (Model.agentWithMissions[agent] != null)
+                {
+                    <td>
+                        @Html.DisplayFor(_ => missionInfo.mission.TimLeft)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        ---
+                    </td>
+                }
                 <td>
-                    @Html.ActionLink("Get mission", "getMission", "Mission", new { Mission = Model.agentWithMissions[agent] }, null)
+                    @Html.DisplayFor(_ => missionInfo.sumKills)
                 </td>
             </tr>
         }

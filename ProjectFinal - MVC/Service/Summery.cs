@@ -3,8 +3,11 @@
     public class Summery
     {
         public double agents { get; set; }
+        public double ActiveAgents { get; set; }
         public double targets { get; set; }
+        public double ActiveTargets {  get; set; }
         public double missions { get; set; }
+        public double ActiveMissions { get; set; }
         public string GanaralRatio {  get; set; }
         public string ReleventRatio { get; set; }
 
