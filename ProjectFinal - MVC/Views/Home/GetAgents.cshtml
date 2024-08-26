@@ -41,7 +41,7 @@
                 <td>
                     (@Html.DisplayFor(_ => agent.x), @Html.DisplayFor(_ => agent.y))
                 </td>                
-                @if (Model.agentWithMissions[agent] != null)
+                @if (Model.agentWithMissions[agent].mission != null)
                 {
                     <td>
                         @Html.ActionLink("Get mission", "getMission", "Mission", missionInfo.mission, null)

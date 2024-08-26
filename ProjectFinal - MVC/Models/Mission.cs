@@ -2,7 +2,7 @@
 {
     public class Mission
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public Agent Agent { get; set; }
 

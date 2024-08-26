@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ProjectFinal___MVC.Service.Suggestion>
+
+@{
+    ViewData["Title"] = "GetMissions";
+}
+
+<h1>GetMissions</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MissionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.agentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.agentLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.targetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.targetLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.timeLeft)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MissionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.agentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.agentLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.targetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.targetLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timeLeft)
+            </td>
+            <td>               
+                @Html.ActionLink("Start mission", "StartMission", new { id = item.MissionId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
