@@ -1,5 +1,11 @@
 ﻿@model ProjectFinal___MVC.Service.Map
-
+<head>
+    <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 2500);
+    </script>
+</head>
 <style>
     .grid-container {
         width: 10000px; /* 1000 משבצות * 10 פיקסלים למשבצת */
@@ -30,39 +36,67 @@
         width: 10px;
         height: 10px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .agent {
         background-color: blue;
+        color: transparent; 
+        transition: color 0.3s; 
+        position: relative;
     }
 
     .target {
         background-color: red;
+        color: transparent; 
+        transition: color 0.3s;
+        position: relative;
     }
+
+    .agent:hover::after {
+        content: attr(data-id);
+        color: white; /* הצג את ה-ID כאשר העכבר מעל */
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: black;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+        .target:hover::after {
+            content: attr(data-id);
+            color: white; /* הצג את ה-ID כאשר העכבר מעל */
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: black;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
 </style>
 
-<div class="grid-container">
-    <div class="grid">
-        @for (int i = 0; i < 1000; i++)
-        {
-            @for (int j = 0; j < 1000; j++)
-            {
-                <div class="grid-item"></div>
-            }
-        }
 
-        @foreach (var agent in Model.Agents)
-        {
-            <div class="agent" style="left:@(agent.x * 10)px; top:@(agent.y * 10)px;">
-                @agent.nickname
-            </div>
-        }
-
-        @foreach (var target in Model.Targets)
-        {
-            <div class="target" style="left:@(target.x * 10)px; top:@(target.y * 10)px;">
-                @target.name
-            </div>
-        }
+@foreach (var agent in Model.Agents)
+{
+<div class="agent" style="left:@(agent.x * 10)px; top:@(agent.y * 10)px;" data-id="@agent.nickname">
+                
     </div>
+}
+
+@foreach (var target in Model.Targets)
+{
+<div class="target" style="left:@(target.x * 10)px; top:@(target.y * 10)px;" data-id="@target.name">
+                
+    </div>
+}
+</div>
 </div>

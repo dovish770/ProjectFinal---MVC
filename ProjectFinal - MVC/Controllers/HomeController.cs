@@ -95,9 +95,10 @@ namespace ProjectFinal___MVC.Controllers
         {
             var agents = await _httpClient.GetFromJsonAsync<IEnumerable<Agent>>("http://localhost:5281/Agents");
             var tartgets = await _httpClient.GetFromJsonAsync<IEnumerable<Target>>("http://localhost:5281/targets");
+            var AliveTargets = tartgets.Where(t => t.Status == "Alive");
             var map = new Map();
             map.Agents = agents.ToList();
-            map.Targets = tartgets.ToList();
+            map.Targets = AliveTargets.ToList();
             return View(map);   
         }
 
