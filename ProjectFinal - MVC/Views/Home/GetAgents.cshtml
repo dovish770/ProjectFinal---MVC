@@ -4,6 +4,13 @@
     ViewData["Title"] = "GetAgents";
 }
 
+<head>
+    <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 5000);
+    </script>
+</head>
 <h1>Get Agents list</h1>
 
 <table class="table">
@@ -40,21 +47,12 @@
                 </td>
                 <td>
                     (@Html.DisplayFor(_ => agent.x), @Html.DisplayFor(_ => agent.y))
-                </td>                
-                @if (Model.agentWithMissions[agent].mission != null)
+                </td>
+                @if (missionInfo.mission != null)
                 {
                     <td>
-                        @Html.ActionLink("Get mission", "getMission", "Mission", missionInfo.mission, null)
+                        @Html.ActionLink("Get mission", "ReadMission", "Missions", missionInfo.mission, null)
                     </td>
-                }
-                else
-                {
-                    <td>
-                        No active mission
-                    </td>
-                }
-                @if (Model.agentWithMissions[agent] != null)
-                {
                     <td>
                         @Html.DisplayFor(_ => missionInfo.mission.TimLeft)
                     </td>
@@ -62,12 +60,18 @@
                 else
                 {
                     <td>
+                        No active mission
+                    </td>
+                    <td>
                         ---
                     </td>
                 }
-                <td>
-                    @Html.DisplayFor(_ => missionInfo.sumKills)
+                @if (missionInfo.sumKills != null)
+                {
+                    <td>
+                        @Html.DisplayFor(_ => missionInfo.sumKills)
                 </td>
+                }
             </tr>
         }
     </tbody>

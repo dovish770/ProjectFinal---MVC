@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "GetMissions";
 }
+<head>
+    <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 5000);
+    </script>
+</head>
 
 <h1>GetMissions</h1>
 
@@ -57,11 +64,14 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.timeLeft)
-            </td>
+            </td>             
             <td>               
                 @Html.ActionLink("Start mission", "StartMission", new { id = item.MissionId })
-            </td>
+            </td>           
         </tr>
 }
     </tbody>
 </table>
+           
+                    
+                

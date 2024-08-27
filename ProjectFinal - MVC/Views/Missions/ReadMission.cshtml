@@ -1,0 +1,55 @@
+﻿@model ProjectFinal___MVC.Models.Mission
+
+@{
+    ViewData["Title"] = "ReadMission";
+}
+
+<head>
+    <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 5000);
+    </script>
+    <title>@ViewData["Title"]</title>
+</head>
+
+<h1>Missions Details</h1>
+
+<div>
+    <h4>Mission</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <strong>Mission Id:</strong> @Html.DisplayFor(model => model.Id)
+            </div>
+            <div class="col-sm-4">
+                <strong>Agent Id:</strong> @Html.DisplayFor(model => model.Agent.Id)
+            </div>
+            <div class="col-sm-4">
+                <strong>Agent's Name:</strong> @Html.DisplayFor(model => model.Agent.nickname)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <strong>Target Id:</strong> @Html.DisplayFor(model => model.Target.Id)
+            </div>
+            <div class="col-sm-4">
+                <strong>Target's Name:</strong> @Html.DisplayFor(model => model.Target.name)
+            </div>
+            <div class="col-sm-4">
+                <strong>@Html.DisplayNameFor(model => model.Duration):</strong> @Html.DisplayFor(model => model.Duration)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <strong>@Html.DisplayNameFor(model => model.TimLeft):</strong> @Html.DisplayFor(model => model.TimLeft)
+            </div>
+            <div class="col-sm-4">
+                <strong>@Html.DisplayNameFor(model => model.Status):</strong> @Html.DisplayFor(model => model.Status)
+            </div>
+        </div>
+    </div>
+</div>
+
+<a asp-controller="Agents" asp-action="GetAgents">Back to Agents</a>

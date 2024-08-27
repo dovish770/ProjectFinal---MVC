@@ -66,6 +66,12 @@ namespace ProjectFinal___MVC.Controllers
         }
 
 
+        public async Task<IActionResult> ReadMission(int id)
+        {
+            var missions = await _httpClient.GetFromJsonAsync<IEnumerable<Mission>>("http://localhost:5281/Missions");
+            var mission = missions.FirstOrDefault(m => m.Id == id);
+            return View(mission);
+        }
 
     }
 }

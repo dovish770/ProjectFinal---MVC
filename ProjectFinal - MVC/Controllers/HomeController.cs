@@ -54,18 +54,21 @@ namespace ProjectFinal___MVC.Controllers
             foreach (Agent agent in agents)
             {
                 MissionSumKills missionSumKills = new MissionSumKills();//מבנה נתונים המכיל משימה פעילה אם יש, וסכום ההריגות
-                var missionByAgentId = missions.FirstOrDefault(miss => miss.Agent.Id == agent.Id);//משיכה של כל המשימות של הסוכן
-                if (missionByAgentId != null)
+                var missionsByAgentId = missions.Where(miss => miss.Agent.Id == agent.Id);//משיכה של כל המשימות של הסוכן
+                if (missionsByAgentId != null)
                 {
-                    //מצרף למילון סכום ההריגות עד כה
-                    missionSumKills.sumKills = missions.Count(mis => mis.Status == "Comlpeted");
-
-                    //מצרף למילון את המשימה הפעילה אם קיימת
-                    if (missionByAgentId.Status == "Active")
-                    {
-                        missionSumKills.mission = missionByAgentId;
+                    missionSumKills.sumKills = missionsByAgentId.Count(mis => mis.Status == "Comlpeted");
+                    foreach (var mission in missionsByAgentId)
+                    {                        
+                        //מצרף למילון את המשימה הפעילה אם קיימת
+                        if (mission.Status == "Actice")
+                        {
+                            missionSumKills.mission = mission;
+                        }
                     }
                 }
+                //מצרף למילון סכום ההריגות עד כה
+                
                 dicAgents.agentWithMissions[agent] = missionSumKills;
             }
 
@@ -87,5 +90,17 @@ namespace ProjectFinal___MVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Map()
+        {
+            var agents = await _httpClient.GetFromJsonAsync<IEnumerable<Agent>>("http://localhost:5281/Agents");
+            var tartgets = await _httpClient.GetFromJsonAsync<IEnumerable<Target>>("http://localhost:5281/targets");
+            var map = new Map();
+            map.Agents = agents.ToList();
+            map.Targets = tartgets.ToList();
+            return View(map);   
+        }
+
+
     }
 }

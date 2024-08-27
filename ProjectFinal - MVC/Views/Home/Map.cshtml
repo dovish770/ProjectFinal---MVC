@@ -1,0 +1,68 @@
+﻿@model ProjectFinal___MVC.Service.Map
+
+<style>
+    .grid-container {
+        width: 10000px; /* 1000 משבצות * 10 פיקסלים למשבצת */
+        height: 10000px;
+        border: 2px solid black; /* מסגרת למפה כולה */
+        position: relative;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(1000, 1fr);
+        grid-template-rows: repeat(1000, 1fr);
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .grid-item {
+        width: 10px;
+        height: 10px;
+        border: 1px solid lightgray;
+    }
+
+    .agent, .target {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .agent {
+        background-color: blue;
+    }
+
+    .target {
+        background-color: red;
+    }
+</style>
+
+<div class="grid-container">
+    <div class="grid">
+        @for (int i = 0; i < 1000; i++)
+        {
+            @for (int j = 0; j < 1000; j++)
+            {
+                <div class="grid-item"></div>
+            }
+        }
+
+        @foreach (var agent in Model.Agents)
+        {
+            <div class="agent" style="left:@(agent.x * 10)px; top:@(agent.y * 10)px;">
+                @agent.nickname
+            </div>
+        }
+
+        @foreach (var target in Model.Targets)
+        {
+            <div class="target" style="left:@(target.x * 10)px; top:@(target.y * 10)px;">
+                @target.name
+            </div>
+        }
+    </div>
+</div>
